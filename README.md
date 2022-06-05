@@ -18,7 +18,7 @@ Fornecedor |----
 
 <br/>
 
-> ### Funcionalidades
+> ### 🛠 Funcionalidades
 Funcionalidades | Descrição
 :--- | :---
 RF01 | Possibilidade de cadastrar, visualizar, editar e deletar produtos (utilize banco de dados)
