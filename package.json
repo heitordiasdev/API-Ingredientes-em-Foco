@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,8 @@
   "homepage": "https://github.com/heitordiasdev/API-Ingredientes-em-Foco#readme",
   "dependencies": {
     "express": "4.18.1",
-    "pg-promise": "^10.11.1",
-    "sequelize": "^6.20.1"
+    "pg-promise": "10.11.1",
+    "sequelize": "6.20.1"
   },
   "devDependencies": {
     "nodemon": "2.0.16"
