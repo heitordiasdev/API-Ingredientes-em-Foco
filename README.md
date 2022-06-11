@@ -12,9 +12,9 @@ e facilitar a vida de quem tem alergias alimentares, em especial as mais graves.
 > ### 👥 Atores do Sistema
 Atores | Descrção
 :--- | :--- 
-Cliente | -- 
-Administrador |---
-Fornecedor |----
+Cliente | O cliente pode visualizar ou cadastrar alimentos na comunidade, além de poder editar ou excluir postagens de sua autoria.
+Administrador |O administrador poderá visualizar e criar postagens na comunidade, além de poder editar ou excluir postagens dos usuários (cliente, fornecedor). O administrador poderá banir usuários que não estejam comprindo com as normais da comunidade.
+Fornecedor | No cadastro de usuários e alimentos terá campos extras para usuários do tipo fornecedor, contendo entrada para CNPJ e a empresa na qual trabalham. Os fornecedores poderão visualizar, cadastrar, editar e excluir alimentos que cadastraram.
 
 <br/>
 
