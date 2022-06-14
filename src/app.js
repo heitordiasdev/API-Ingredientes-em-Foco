@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(router);
 
 //VIEWS
-app.set("views", path.resolve(__dirname, "src", "views"));
+app.set('views', path.resolve(__dirname, 'views'));
 app.set("view engine", "ejs");
 
 //DATABASES
