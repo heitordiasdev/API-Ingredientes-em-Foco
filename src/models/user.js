@@ -1,16 +1,16 @@
 const user = (sequelize, DataTypes) => {
-    const User = sequelize.define('User',{
+    const User = sequelize.define('User', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-          },
-        name:{
+        },
+        name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        cpfCnpj:{
+        cpfCnpj: {
             type: DataTypes.INTEGER,
             unique: true,
             allowNull: false
@@ -24,16 +24,16 @@ const user = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        dateNasc:{
+        dateNasc: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        tipo: {
-            type: DataTypes.STRING,
+        typeUser: {
+            type: DataTypes.BOOLEAN,
             allowNull: false
         }
 
-    },{
+    }, {
         tableName: 'user'
     })
 

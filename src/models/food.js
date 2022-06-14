@@ -5,25 +5,25 @@ const food = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true,
             allowNull: false,
-          },
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        fabricante: {
+        manufacturer: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        ingredientes: {
+        ingredients: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        infoNutrional: {
+        infoNutritional: {
             type: DataTypes.STRING,
             allowNull: false
         }
-    },{
-        tableName:'food'
+    }, {
+        tableName: 'food'
     })
     return Food
 }
