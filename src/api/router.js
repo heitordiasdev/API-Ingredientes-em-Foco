@@ -1,16 +1,16 @@
 const express = require('express');
+
+const foodRouter = require('../controller/food')
+const userRouter = require('../controller/users')
+
 const router = express.Router()
 
-const home = require('../controller/home');
-const food = require('../controller/food');
-const users = require('../controller/users');
 
-router.get('/', home.paginaHome);
-router.get('/food', food.paginaFood);
-router.get('/users', users.paginaUsers);
+router.get('/',(req, res) => {
+    return res.send("App funcionando");
+});
 
-// router.get('/',(req, res) => {
-//     return res.send("App funcionando");
-// });
+router.use('/food', foodRouter)
+router.use('/user',userRouter)
 
 module.exports = router

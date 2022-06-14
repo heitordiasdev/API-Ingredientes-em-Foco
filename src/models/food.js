@@ -25,6 +25,7 @@ const food = (sequelize, DataTypes) => {
     },{
         tableName:'food'
     })
+    return Food
 }
 
 module.exports = food
