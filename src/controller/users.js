@@ -8,9 +8,11 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const { name, cpfCnpj, email, password, typeUser, dateNasc } = req.body
-    await user.create({ name, cpfCnpj, email, password, typeUser, dateNasc })
-    res.send('Usuario criado com sucesso !')
+    const { name, cpfCnpj, email, password, dateNasc, typeUser } = req.body
+    const newUser = await user.create({ name, cpfCnpj, email, password, dateNasc, typeUser })
+    res.json(newUser)
 })
+
+
 
 module.exports = router 
