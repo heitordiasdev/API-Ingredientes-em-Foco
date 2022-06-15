@@ -11,7 +11,7 @@ const user = (sequelize, DataTypes) => {
             allowNull: false
         },
         cpfCnpj: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             unique: true,
             allowNull: false
         },
