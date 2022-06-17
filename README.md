@@ -26,3 +26,34 @@ RF02 | <p>O produto deve ter nome e conter seus ingredientes, imagem(opcional).<
 RF03 | <p>Possibilidade de pesquisar por alimentos e visualizar os ingredientes.</p>
 RF04 | <p>Possibilidade de filtrar alimentos que não tenham determinados ingredientes.</p>
 RF05 | <p>Possibilidade de filtrar alimentos que tenham determinados ingredientes.</p>
+
+<br/>
+
+> ### 🔁 Passo-a-passo para fazer a clonagem do projeto (repositório)
+```bash
+# Comando para fazem a clonagem do repositório:
+$ git clone https://github.com/heitordiasdev/API-Ingredientes-em-Foco.git
+
+# Acesse a pasta do projeto:
+$ cd API-Ingredientes-em-Foco
+
+# Instale todas as dependências:
+$ npm install
+
+# Altere as informações do arquivo database.js com as credencias do seu postgres:
+# Acesse a pasta src/config/database.js
+$ module.exports = {
+    dialect: 'postgres',
+    host: 'localhost',
+    port: 5432,
+    database: 'ingredientes_in_foco',
+    username: 'postgres',
+    password: 'senha123'
+};
+
+# Execute o comando abaixo para iniciar o servidor:
+$ npm start
+
+# Copie a URL abaixo e cole no seu navegador:
+$ http:/localhost:3000
+```
