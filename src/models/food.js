@@ -15,11 +15,11 @@ const food = (sequelize, DataTypes) => {
             allowNull: false
         },
         ingredients: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         },
         infoNutritional: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         }
     }, {
