@@ -68,6 +68,16 @@ class FoodService {
 
 
     async addFood(foodData) {
+        //Verifica se já existe food com o mesmo nome e fornecedor
+        const food = await this.food.findOne({
+            where: {
+                name: foodData.name,
+                manufacturer: foodData.manufacturer
+            }
+        })
+        if (food != null) {
+            throw new Error('Já existe um produto cadastrado com esse nome e fabricante!')
+        }
         try {
             const newFood = await this.food.create(
                 {

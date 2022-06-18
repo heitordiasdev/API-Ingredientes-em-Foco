@@ -18,8 +18,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const { name, cpfCnpj, email, password, dateNasc, typeUser } = req.body
-    const newUser = await userService.add({ name, cpfCnpj, email, password, dateNasc, typeUser })
-    res.json(newUser)
+    try {
+        const newUser = await userService.add({ name, cpfCnpj, email, password, dateNasc, typeUser })
+        res.json(newUser)
+    } catch (erro) {
+        res.status(400).send(erro.message)
+    }
 })
 
 router.delete('/:id', async (req, res) => {

@@ -26,8 +26,12 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const { name, manufacturer, ingredients, infoNutritional } = req.body
-    const product = await foodService.addFood({ name, manufacturer, ingredients, infoNutritional })
-    res.json(product)
+    try {
+        const product = await foodService.addFood({ name, manufacturer, ingredients, infoNutritional })
+        res.json(product)
+    } catch (erro) {
+        res.status(400).send(erro.message)
+    }
 })
 
 router.delete('/:id', async (req, res) => {

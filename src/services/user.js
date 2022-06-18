@@ -24,17 +24,26 @@ class UserService {
   }
 
   async add(userData) {
+    //Verifica se já existe user com o mesmo cpfCnpj
+    const user = await this.user.findOne({
+      where: {
+        cpfCnpj: userData.cpfCnpj
+      }
+    })
+    if (user != null) {
+      throw new Error('Já existe um usuário cadastrado com esse CPF/CNPJ!')
+    }
     try {
       const newUser = await this.user.create(
-          { 
-            "name"    : userData.name,
-            "cpfCnpj" : userData.cpfCnpj,
-            "email"   : userData.email,
-            "password": userData.password,
-            "dateNasc": userData.dateNasc,
-            "typeUser": userData.typeUser
-          }
-        )
+        {
+          "name": userData.name,
+          "cpfCnpj": userData.cpfCnpj,
+          "email": userData.email,
+          "password": userData.password,
+          "dateNasc": userData.dateNasc,
+          "typeUser": userData.typeUser
+        }
+      )
       return newUser
     } catch (erro) {
       console.error(erro.message)
@@ -56,10 +65,10 @@ class UserService {
   async editUser(id, userData) {
     try {
       const userUpdate = await this.user.update(
-        { 
-          "name"    : userData.name,
-          "cpfCnpj" : userData.cpfCnpj,
-          "email"   : userData.email,
+        {
+          "name": userData.name,
+          "cpfCnpj": userData.cpfCnpj,
+          "email": userData.email,
           "password": userData.password,
           "dateNasc": userData.dateNasc,
           "typeUser": userData.typeUser
