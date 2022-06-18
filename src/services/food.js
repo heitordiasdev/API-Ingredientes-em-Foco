@@ -23,6 +23,50 @@ class FoodService {
         }
     }
 
+    /*  async getIngredient() {
+           
+          try {
+              const selectFood = await this.food.findAll({
+                  attributes: ['']
+              })
+              return selectFood
+          } catch (erro) {
+              console.error(erro.message)
+              throw erro
+          }
+      }*/
+
+    async getIngredients(ingredient) {
+        let test = []
+        let arrIngreline = []
+        let result = []
+        const listFood = await this.food.findAll({})
+
+        let allIngredients = listFood.map((x) => x.ingredients)
+        let id = listFood.map((x) => x.id)
+
+        for (var i = 0; i < id.length; i++) {
+
+            arrIngreline = allIngredients[i].split(", ")
+
+            for (var j = 0; j < arrIngreline.length; j++) {
+
+                if (arrIngreline[j] == ingredient) {
+
+                    const selectFood = await this.food.findByPk(id[i])
+                    test.push({
+                        name: selectFood.name
+                    })
+                    result[i] = selectFood
+                    console.log(test)
+                }
+            }
+
+        }
+        return result
+    }
+
+
     async addFood(foodData) {
         try {
             const newFood = await this.food.create(

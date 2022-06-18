@@ -5,9 +5,16 @@ const FoodService = require('../services/food')
 
 const foodService = new FoodService(food);
 
-router.get('/', async (req, res) => {
+
+router.get('/produto', async (req, res) => {
     const listProducts = await foodService.getAll()
     res.json(listProducts)
+})
+
+router.post('/ingrediente', async (req, res) => {
+    const { ingredient } = req.body
+    const test = await foodService.getIngredients(ingredient)
+    res.json(test)
 })
 
 router.get('/:id', async (req, res) => {
@@ -15,6 +22,7 @@ router.get('/:id', async (req, res) => {
     const product = await foodService.getId(id)
     res.json(product)
 })
+
 
 router.post('/', async (req, res) => {
     const { name, manufacturer, ingredients, infoNutritional } = req.body
