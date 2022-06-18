@@ -19,7 +19,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const { name, cpfCnpj, email, password, dateNasc, typeUser } = req.body
     const newUser = await userService.add({ name, cpfCnpj, email, password, dateNasc, typeUser })
-    res.json(newUser)
+    res.status(newUser.code).json({message: newUser.message, data: newUser.data})
 })
 
 router.delete('/:id', async (req, res) => {
