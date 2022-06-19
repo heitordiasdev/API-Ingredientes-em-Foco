@@ -7,20 +7,27 @@ const { body, validationResult } = require('express-validator')
 const foodService = new FoodService(food);
 
 
-router.get('/produto', async (req, res) => {
+router.get('/', async (req, res) => {
     const listProducts = await foodService.getAll()
     res.json(listProducts)
 })
 
-router.post('/ingrediente', async (req, res) => {
-    const { ingredient } = req.body
-    const test = await foodService.getIngredients(ingredient)
-    res.json(test)
-})
 
 router.get('/:id', async (req, res) => {
     const id = req.params.id;
     const product = await foodService.getId(id)
+    res.json(product)
+})
+
+router.get('/filterContainIngredient/:ingredient', async(req,res)=>{ 
+    const ingredient = req.params.ingredient;
+    const product = await foodService.filterIngredient(ingredient);
+    res.json(product)
+})
+
+router.get('/filterNoContainIngredient/:ingredient', async(req,res)=>{ 
+    const ingredient = req.params.ingredient;
+    const product = await foodService.filterNoContainIngredient(ingredient);
     res.json(product)
 })
 

@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 class FoodService {
     constructor(FoodModel) {
         this.food = FoodModel
@@ -5,8 +6,8 @@ class FoodService {
 
     async getAll() {
         try {
-            const listUser = await this.food.findAll()
-            return listUser
+            const listFood = await this.food.findAll()
+            return listFood
         } catch (erro) {
             console.error(erro.message)
             throw erro
@@ -23,47 +24,53 @@ class FoodService {
         }
     }
 
-    /*  async getIngredient() {
-           
-          try {
-              const selectFood = await this.food.findAll({
-                  attributes: ['']
-              })
-              return selectFood
-          } catch (erro) {
-              console.error(erro.message)
-              throw erro
-          }
-      }*/
+    async filterIngredient(ingredient) {
+        try {
+            const listFilterIngredient = await this.food.findAll({
+                attributes:['name', 'manufacturer', 'ingredients', 'infoNutritional'],
+                where: {
+                    ingredients:{
+                        [Op.iLike]: '%'+ingredient+'%'
+                    }
+                }
+            })
+            return listFilterIngredient
+        } catch (erro) {
+            console.error(erro.message)
+            throw erro
+        }
+    }
 
-    async getIngredients(ingredient) {
-        let test = []
-        let arrIngreline = []
-        let result = []
-        const listFood = await this.food.findAll({})
-
-        let allIngredients = listFood.map((x) => x.ingredients)
-        let id = listFood.map((x) => x.id)
-
-        for (var i = 0; i < id.length; i++) {
-
-            arrIngreline = allIngredients[i].split(", ")
-
-            for (var j = 0; j < arrIngreline.length; j++) {
-
-                if (arrIngreline[j] == ingredient) {
-
-                    const selectFood = await this.food.findByPk(id[i])
-                    test.push({
-                        name: selectFood.name
-                    })
-                    result[i] = selectFood
-                    console.log(test)
+    async filterNoContainIngredient(ingredient){
+        try {
+            let listIngredient = [];
+            let listIngredientFiltered = [];
+            
+            listIngredient = await this.food.findAll({
+                attributes:['id','name', 'manufacturer', 'ingredients', 'infoNutritional']
+            })
+            listIngredientFiltered = await this.food.findAll({
+                attributes:['id','name', 'manufacturer', 'ingredients', 'infoNutritional'],
+                where: {
+                    ingredients:{
+                        [Op.iLike]: '%'+ingredient+'%'
+                    }
+                }
+            })
+            const listFiltered = [];
+            for (var i=0; i<listIngredientFiltered.length; i++) {
+                for (var j=0; j<listIngredient.length; j++){
+                    if(listIngredientFiltered[i].id !== listIngredient[j].id){
+                        listFiltered.push(listIngredient[j]);
+                    }
                 }
             }
-
+            return listFiltered;
+            
+        } catch (erro) {
+            console.error(erro.message)
+            throw erro
         }
-        return result
     }
 
 
