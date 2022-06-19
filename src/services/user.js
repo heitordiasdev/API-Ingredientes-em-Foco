@@ -36,19 +36,24 @@ class UserService {
     }
     try {
       const newUser = await this.user.create(
-        {
-          "name": userData.name,
-          "cpfCnpj": userData.cpfCnpj,
-          "email": userData.email,
-          "password": userData.password,
-          "dateNasc": userData.dateNasc,
-          "typeUser": userData.typeUser
-        }
-      )
-      return newUser
-    } catch (erro) {
-      console.error(erro.message)
-      throw erro
+          { 
+            "name"    : userData.name,
+            "cpfCnpj" : userData.cpfCnpj,
+            "email"   : userData.email,
+            "password": userData.password,
+            "dateNasc": userData.dateNasc,
+            "typeUser": userData.typeUser
+          }
+        )
+      return {code: 201, message: "Usuário criado com sucesso!", data:newUser}
+    } catch (error) {
+      if (error.constructor.name == 'ValidationError' ) {
+        console.error(error)
+        return {code: 422, message: "Erro ao tentar cadastrar usuário!", data:{message_error:error.message}}
+      }else{
+        console.error(error)
+        return {code: 500, message: "Erro ao tentar cadastrar usuário!", data:{message_error:error.message}}
+      }
     }
   }
 
