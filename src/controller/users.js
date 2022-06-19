@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const { user } = require('../models')
 const UserService = require('../services/user')
+const { body, validationResult } = require('express-validator')
 
 const userService = new UserService(user);
 
