@@ -24,15 +24,7 @@ class UserService {
   }
 
   async add(userData) {
-    //Verifica se já existe user com o mesmo cpfCnpj
-    const user = await this.user.findOne({
-      where: {
-        cpfCnpj: userData.cpfCnpj
-      }
-    })
-    if (user != null) {
-      throw new Error('Já existe um usuário cadastrado com esse CPF/CNPJ!')
-    }
+
     //Verifica se já existe user com o mesmo e-mail
     const mail = await this.user.findOne({
       where: {

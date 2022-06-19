@@ -27,10 +27,10 @@ class FoodService {
     async filterIngredient(ingredient) {
         try {
             const listFilterIngredient = await this.food.findAll({
-                attributes:['name', 'manufacturer', 'ingredients', 'infoNutritional'],
+                attributes: ['name', 'manufacturer', 'ingredients', 'infoNutritional'],
                 where: {
-                    ingredients:{
-                        [Op.iLike]: '%'+ingredient+'%'
+                    ingredients: {
+                        [Op.iLike]: '%' + ingredient + '%'
                     }
                 }
             })
@@ -41,32 +41,24 @@ class FoodService {
         }
     }
 
-    async filterNoContainIngredient(ingredient){
+    async filterNoContainIngredient(ingredient) {
         try {
             let listIngredient = [];
             let listIngredientFiltered = [];
-            
-            listIngredient = await this.food.findAll({
-                attributes:['id','name', 'manufacturer', 'ingredients', 'infoNutritional']
-            })
+            let listFiltered = []
+
+            listIngredient = await this.food.findAll()
             listIngredientFiltered = await this.food.findAll({
-                attributes:['id','name', 'manufacturer', 'ingredients', 'infoNutritional'],
+                attributes: ['id', 'name', 'manufacturer', 'ingredients', 'infoNutritional'],
                 where: {
-                    ingredients:{
-                        [Op.iLike]: '%'+ingredient+'%'
+                    ingredients: {
+                        [Op.notILike]: '%' + ingredient + '%'
                     }
                 }
             })
-            const listFiltered = [];
-            for (var i=0; i<listIngredientFiltered.length; i++) {
-                for (var j=0; j<listIngredient.length; j++){
-                    if(listIngredientFiltered[i].id !== listIngredient[j].id){
-                        listFiltered.push(listIngredient[j]);
-                    }
-                }
-            }
-            return listFiltered;
-            
+
+            return listIngredientFiltered;
+
         } catch (erro) {
             console.error(erro.message)
             throw erro

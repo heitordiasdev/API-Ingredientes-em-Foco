@@ -19,13 +19,13 @@ router.get('/:id', async (req, res) => {
     res.json(product)
 })
 
-router.get('/filterContainIngredient/:ingredient', async(req,res)=>{ 
+router.get('/filterContainIngredient/:ingredient', async (req, res) => {
     const ingredient = req.params.ingredient;
     const product = await foodService.filterIngredient(ingredient);
     res.json(product)
 })
 
-router.get('/filterNoContainIngredient/:ingredient', async(req,res)=>{ 
+router.get('/filterNoContainIngredient/:ingredient', async (req, res) => {
     const ingredient = req.params.ingredient;
     const product = await foodService.filterNoContainIngredient(ingredient);
     res.json(product)
