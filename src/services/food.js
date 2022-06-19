@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 class FoodService {
     constructor(FoodModel) {
         this.food = FoodModel
@@ -5,8 +6,8 @@ class FoodService {
 
     async getAll() {
         try {
-            const listUser = await this.food.findAll()
-            return listUser
+            const listFood = await this.food.findAll()
+            return listFood
         } catch (erro) {
             console.error(erro.message)
             throw erro
@@ -23,7 +24,59 @@ class FoodService {
         }
     }
 
+    async filterIngredient(ingredient) {
+        try {
+            const listFilterIngredient = await this.food.findAll({
+                attributes: ['name', 'manufacturer', 'ingredients', 'infoNutritional'],
+                where: {
+                    ingredients: {
+                        [Op.iLike]: '%' + ingredient + '%'
+                    }
+                }
+            })
+            return listFilterIngredient
+        } catch (erro) {
+            console.error(erro.message)
+            throw erro
+        }
+    }
+
+    async filterNoContainIngredient(ingredient) {
+        try {
+            let listIngredient = [];
+            let listIngredientFiltered = [];
+            let listFiltered = []
+
+            listIngredient = await this.food.findAll()
+            listIngredientFiltered = await this.food.findAll({
+                attributes: ['id', 'name', 'manufacturer', 'ingredients', 'infoNutritional'],
+                where: {
+                    ingredients: {
+                        [Op.notILike]: '%' + ingredient + '%'
+                    }
+                }
+            })
+
+            return listIngredientFiltered;
+
+        } catch (erro) {
+            console.error(erro.message)
+            throw erro
+        }
+    }
+
+
     async addFood(foodData) {
+        //Verifica se já existe food com o mesmo nome e fornecedor
+        const food = await this.food.findOne({
+            where: {
+                name: foodData.name,
+                manufacturer: foodData.manufacturer
+            }
+        })
+        if (food != null) {
+            throw new Error('Já existe um produto cadastrado com esse nome e fabricante!')
+        }
         try {
             const newFood = await this.food.create(
                 {
