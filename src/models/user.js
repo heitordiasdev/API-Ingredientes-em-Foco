@@ -90,7 +90,7 @@ const user = (sequelize, DataTypes) => {
         },
         email: {
             type: DataTypes.STRING,
-            unique: true,
+            unique: {args: true, msg: "O email já foi cadastrado"},,
             allowNull: false
         },
         password: {
