@@ -2,9 +2,11 @@ const express = require("express");
 const router = require("./api/router");
 const path = require("path");
 const { sequelize } = require("./models");
+const cors = require("cors");
 
 //APP
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(router);
 
@@ -18,7 +20,7 @@ sequelize.sync().then(() => {
 });
 
 // PORT
-const link = "http://localhost:3000";
-app.listen(3000, () => {
+const link = "http://localhost:8080";
+app.listen(8080, () => {
   console.log(`App funcionando, acesse: ${link}`);
 });
