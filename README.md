@@ -100,11 +100,10 @@ $ http:/localhost:3000
   </tr>
 <!--   <tr align="center">
     <td>
-      <a href="https://github.com/LeticiaFarias">
-        <img src="https://avatars.githubusercontent.com/u/40062831?v=4" width=100 />
-        <p>Letícia <br/>Farias</p>
+      <a href="https://github.com/aucoliveira">
+        <img src="https://avatars.githubusercontent.com/u/aucoliveira" width=100 />
+        <p>Augusto <br/>Cesar</p>
       </a>
-      <p>😂</p>
     </td>
   </tr> -->
 </table>
