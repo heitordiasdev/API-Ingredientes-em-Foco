@@ -57,3 +57,54 @@ $ npm start
 # Copie a URL abaixo e cole no seu navegador:
 $ http:/localhost:3000
 ```
+> <p>🚀 Equipe de desenvolvimento - ⚡ Turing</p>
+
+<table align="center">
+  <tr align="center">
+    <td>
+      <a href="https://github.com/heitordiasdev">
+        <img src="https://avatars.githubusercontent.com/heitordiasdev" width=100 />
+        <p>Heitor <br/>Dias</p>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/CintiaBraulino">
+        <img src="https://avatars.githubusercontent.com/CintiaBraulino" width=100 />
+        <p>Cintia <br/>Braulino</p>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/RubensLFerreira">
+        <img src="https://avatars.githubusercontent.com/RubensLFerreira" width=100 />
+        <p>Rubens <br/>Lima</p>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/emillymar">
+        <img src="https://avatars.githubusercontent.com/emillymar" width=100 />
+        <p>Emilly <br/>Marques</p>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/Alicia-Alexia">
+        <img src="https://avatars.githubusercontent.com/Alicia-Alexia" width=100 />
+        <p>Alicia <br/>Alexia</p>
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/IgorPAS">
+        <img src="https://avatars.githubusercontent.com/IgorPAS" width=100 />
+        <p>Igor <br/>Silva</p>
+      </a>
+    </td>
+  </tr>
+<!--   <tr align="center">
+    <td>
+      <a href="https://github.com/LeticiaFarias">
+        <img src="https://avatars.githubusercontent.com/u/40062831?v=4" width=100 />
+        <p>Letícia <br/>Farias</p>
+      </a>
+      <p>😂</p>
+    </td>
+  </tr> -->
+</table>
