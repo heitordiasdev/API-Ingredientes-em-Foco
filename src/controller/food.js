@@ -71,15 +71,17 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
     const { name, manufacturer, ingredients, infoNutritional } = req.body;
+    const UserId = 19 //user id logged
     try {
       const product = await foodService.addFood({
         name,
         manufacturer,
         ingredients,
         infoNutritional,
+        UserId
       });
       res.status(201).json(product);
-    } catch (erro) {
+    } catch (error) {
       res.status(400).send(error.message);
     }
   }

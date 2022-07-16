@@ -89,6 +89,7 @@ class FoodService {
         manufacturer: foodData.manufacturer,
         ingredients: foodData.ingredients,
         infoNutritional: foodData.infoNutritional,
+        UserId: foodData.UserId,
       });
       return newFood;
     } catch (erro) {
