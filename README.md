@@ -55,7 +55,7 @@ $ module.exports = {
 $ npm start
 
 # Copie a URL abaixo e cole no seu navegador:
-$ http:/localhost:3000
+$ http:/localhost:8080
 ```
 > <p>🚀 Equipe de desenvolvimento - ⚡ Turing</p>
 
