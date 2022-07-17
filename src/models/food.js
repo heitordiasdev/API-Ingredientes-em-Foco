@@ -1,3 +1,4 @@
+
 const food = (sequelize, DataTypes) => {
     const Food = sequelize.define('Food', {
         id: {
@@ -6,6 +7,7 @@ const food = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false,
         },
+
         name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -25,6 +27,8 @@ const food = (sequelize, DataTypes) => {
     }, {
         tableName: 'food'
     })
+    
+  
     return Food
 }
 

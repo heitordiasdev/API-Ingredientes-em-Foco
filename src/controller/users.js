@@ -2,9 +2,34 @@ const express = require("express");
 const router = express.Router();
 const { user } = require("../models");
 const UserService = require("../services/user");
-const { body, validationResult } = require("express-validator");
-
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
+const authconfig = require('../config/auth.json')
 const userService = new UserService(user);
+
+function generateToken(params = {}){
+  return jwt.sign(params, authconfig.secret, {
+       expiresIn:86400
+   });
+}
+router.post('/authenticate', async(req,res) => {
+  const {email, password} = req.body
+  const user =  userService.postAuth(email)
+  console.log(user);
+  if(!user)
+        return res.status(400).send({ error: 'User not found'});
+
+    if (!await bcrypt.compare(password, user.password))
+        return res.status(400).send({ error:'Invalid password'})
+    
+    //user.password = undefined;
+
+
+    res.send({
+        user,
+        token:generateToken({id:user.id})
+    })
+})
 
 // Busca todos os dados
 router.get("/", async (req, res) => {
@@ -39,9 +64,10 @@ router.post("/", async (req, res) => {
       dateNasc,
       typeUser,
     });
-    res
-      .status(newUser.code)
-      .json({ message: newUser.message, data: newUser.data });
+    newUser.password = undefined;
+    return res.send({
+      newUser,
+      token:generateToken({id:newUser.id})});
   } catch (error) {
     res.status(400).send(error.mensage);
   }

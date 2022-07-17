@@ -108,7 +108,7 @@ const user = (sequelize, DataTypes) => {
 
     }, {
         tableName: 'user'
-    })
+    } ,  )
 
     return User
 }
