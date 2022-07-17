@@ -4,6 +4,65 @@ class FoodService {
     this.food = FoodModel;
   }
 
+  async filterFood(food) {
+    try {
+      const listFilterFood = await this.food.findAll({
+        attributes: ["name", "manufacturer", "ingredients", "infoNutritional"],
+        where: {
+          name: {
+            [Op.iLike]: "%" + food + "%",
+          },
+        },
+      });
+      return listFilterFood;
+    } catch (erro) {
+      console.error(erro.message);
+      throw erro;
+    }
+  }
+
+  async filterFoodIngredient(food, ingredient) {
+    try {
+      const listFilterFood = await this.food.findAll({
+        attributes: ["name", "manufacturer", "ingredients", "infoNutritional"],
+        where: {
+          name: {
+            [Op.iLike]: "%" + food + "%",
+          },
+          ingredients: {
+            [Op.iLike]: "%" + ingredient + "%",
+          },
+        },
+      });
+      return listFilterFood;
+    } catch (erro) {
+      console.error(erro.message);
+      throw erro;
+    }
+  }
+
+  async filterFoodNotIngredient(food, ingredient) {
+    try {
+      const listFilterFood = await this.food.findAll({
+        attributes: ["name", "manufacturer", "ingredients", "infoNutritional"],
+        where: {
+          name: {
+            [Op.iLike]: "%" + food + "%",
+          },
+          ingredients: {
+            [Op.notILike]: "%" + ingredient + "%",
+          },
+        },
+      });
+      return listFilterFood;
+    } catch (erro) {
+      console.error(erro.message);
+      throw erro;
+    }
+  }
+
+
+    
   async getAll() {
     try {
       const listFood = await this.food.findAll();
@@ -88,7 +147,8 @@ class FoodService {
         name: foodData.name,
         manufacturer: foodData.manufacturer,
         ingredients: foodData.ingredients,
-        infoNutritional: foodData.infoNutritional,
+        infoNutritional: foodData.infoNutritional,  
+        UserId: foodData.UserId
       });
       return newFood;
     } catch (erro) {
