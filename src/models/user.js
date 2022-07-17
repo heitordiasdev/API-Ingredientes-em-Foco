@@ -23,16 +23,7 @@ const user = (sequelize, DataTypes) => {
                         let sum;
                         let res;
                         sum = 0;
-                        if (cpfCnpjNum == "00000000000") throw new Error(' CPF inválido');
-                        if (cpfCnpjNum == "11111111111") throw new Error(' CPF inválido');
-                        if (cpfCnpjNum == "22222222222") throw new Error(' CPF inválido');
-                        if (cpfCnpjNum == "33333333333") throw new Error(' CPF inválido');
-                        if (cpfCnpjNum == "44444444444") throw new Error(' CPF inválido');
-                        if (cpfCnpjNum == "55555555555") throw new Error(' CPF inválido');
-                        if (cpfCnpjNum == "66666666666") throw new Error(' CPF inválido');
-                        if (cpfCnpjNum == "77777777777") throw new Error(' CPF inválido');
-                        if (cpfCnpjNum == "88888888888") throw new Error(' CPF inválido');
-                        if (cpfCnpjNum == "99999999999") throw new Error(' CPF inválido');
+                        if ( /(\d)\1{10}/.test(cpfCnpjNum)) throw new Error(' CPF inválido');
 
                         for (i=1; i<=9; i++){
                             sum = sum + parseInt(cpfCnpjNum.substring(i-1, i)) * (11 - i);
@@ -50,16 +41,7 @@ const user = (sequelize, DataTypes) => {
                         if(res != parseInt(cpfCnpjNum.substring(10, 11))) {throw new Error(' CPF inválido')}
 
                     }else if(cpfCnpjNum.length==14){
-                        if (cpfCnpjNum == "00000000000000") throw new Error(' CNPJ inválido'); 
-                        if (cpfCnpjNum == "11111111111111") throw new Error(' CNPJ inválido'); 
-                        if (cpfCnpjNum == "22222222222222") throw new Error(' CNPJ inválido'); 
-                        if (cpfCnpjNum == "33333333333333") throw new Error(' CNPJ inválido'); 
-                        if (cpfCnpjNum == "44444444444444") throw new Error(' CNPJ inválido'); 
-                        if (cpfCnpjNum == "55555555555555") throw new Error(' CNPJ inválido'); 
-                        if (cpfCnpjNum == "66666666666666") throw new Error(' CNPJ inválido'); 
-                        if (cpfCnpjNum == "77777777777777") throw new Error(' CNPJ inválido'); 
-                        if (cpfCnpjNum == "88888888888888") throw new Error(' CNPJ inválido'); 
-                        if (cpfCnpjNum == "99999999999999") throw new Error(' CNPJ inválido');
+                        if ( /(\d)\1{13}/.test(cpfCnpjNum)) throw new Error(' CNPJ inválido'); 
                         let leng = cpfCnpjNum.length - 2
                         let num = cpfCnpjNum.substring(0,leng);
                         let dv = cpfCnpjNum.substring(leng);
