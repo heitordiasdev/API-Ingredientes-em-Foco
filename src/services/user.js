@@ -1,11 +1,32 @@
+const jwt = require('jsonwebtoken')
+const authconfig = require('../config/auth.json')
+
+function generateToken(params = {}){
+   return jwt.sign(params, authconfig.secret, {
+        expiresIn:86400
+    });
+}
+
 class UserService {
   constructor(UserModel) {
     this.user = UserModel;
   }
-
+  async postAuth(email) {
+    try {
+      const auth = await this.user.findOne({
+        where:{
+          email: email
+        }
+      });
+      return auth;
+    } catch (erro) {
+      console.error(erro.message);
+      throw erro;
+    }
+  }
   async getAll() {
     try {
-      const listUser = await this.user.findAll();
+      const listUser = await this.user.findAll({attributes: { exclude: ['password'] }});
       return listUser;
     } catch (erro) {
       console.error(erro.message);
@@ -15,7 +36,7 @@ class UserService {
 
   async getId(id) {
     try {
-      const selectUser = await this.user.findByPk(id);
+      const selectUser = await this.user.findByPk(id,{attributes: { exclude: ['password'] }});
       return selectUser;
     } catch (erro) {
       console.error(erro.message);
@@ -25,7 +46,7 @@ class UserService {
 
   async add(userData) {
     try {
-      const newUser = await this.user.create({
+        const newUser = await this.user.create({
         name: userData.name,
         cpfCnpj: userData.cpfCnpj,
         email: userData.email,
@@ -33,11 +54,13 @@ class UserService {
         dateNasc: userData.dateNasc,
         typeUser: userData.typeUser,
       });
-      return {
+      newUser.password = undefined;
+
+        return ({
         code: 201,
         message: "Usuário criado com sucesso!",
-        data: newUser,
-      };
+        data:  newUser,
+        token:generateToken({id: newUser.id})});
     } catch (error) {
       if (error.constructor.name == "ValidationError") {
         console.error(error);
@@ -81,6 +104,7 @@ class UserService {
         },
         { where: { id: id } }
       );
+      userUpdate.password = undefined;
       return userUpdate;
     } catch (erro) {
       console.error(erro.message);
