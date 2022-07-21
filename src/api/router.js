@@ -5,6 +5,8 @@ const { body } = require("express-validator");
 const Authenticate = require('../controller/user/authController')
 const authenticate = new Authenticate()
 
+const auth = require('../middleware/login')
+
 router.post('/user/authenticate', authenticate.postAuth);
 
 const ListUser = require('../controller/user/ListUser')
