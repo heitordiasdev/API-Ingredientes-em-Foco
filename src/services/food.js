@@ -21,6 +21,21 @@ class FoodService {
     }
   }
 
+  async filterFoodByUser(id) {
+    try {
+      const listFilterFood = await this.food.findAll({
+        attributes: ["name", "image","manufacturer", "ingredients", "infoNutritional"],
+        where: {
+          UserId: id
+        },
+      });
+      return listFilterFood;
+    } catch (erro) {
+      console.error(erro.message);
+      throw erro;
+    }
+  }
+
   async filterFoodIngredient(food, ingredient) {
     try {
       const listFilterFood = await this.food.findAll({
@@ -150,7 +165,7 @@ class FoodService {
         manufacturer: foodData.manufacturer,
         ingredients: foodData.ingredients,
         infoNutritional: foodData.infoNutritional,  
-        UserId: foodData.UserId
+        UserId: foodData.id
       });
       return newFood;
     } catch (erro) {
