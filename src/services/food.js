@@ -7,7 +7,7 @@ class FoodService {
   async filterFood(food) {
     try {
       const listFilterFood = await this.food.findAll({
-        attributes: ["name", "manufacturer", "ingredients", "infoNutritional"],
+        attributes: ["name", "image","manufacturer", "ingredients", "infoNutritional"],
         where: {
           name: {
             [Op.iLike]: "%" + food + "%",
@@ -24,7 +24,7 @@ class FoodService {
   async filterFoodIngredient(food, ingredient) {
     try {
       const listFilterFood = await this.food.findAll({
-        attributes: ["name", "manufacturer", "ingredients", "infoNutritional"],
+        attributes: ["name", "image", "manufacturer", "ingredients", "infoNutritional"],
         where: {
           name: {
             [Op.iLike]: "%" + food + "%",
@@ -44,7 +44,7 @@ class FoodService {
   async filterFoodNotIngredient(food, ingredient) {
     try {
       const listFilterFood = await this.food.findAll({
-        attributes: ["name", "manufacturer", "ingredients", "infoNutritional"],
+        attributes: ["name", "image", "manufacturer", "ingredients", "infoNutritional"],
         where: {
           name: {
             [Op.iLike]: "%" + food + "%",
@@ -86,7 +86,7 @@ class FoodService {
   async filterIngredient(ingredient) {
     try {
       const listFilterIngredient = await this.food.findAll({
-        attributes: ["name", "manufacturer", "ingredients", "infoNutritional"],
+        attributes: ["name", "image", "manufacturer", "ingredients", "infoNutritional"],
         where: {
           ingredients: {
             [Op.iLike]: "%" + ingredient + "%",
@@ -111,6 +111,7 @@ class FoodService {
         attributes: [
           "id",
           "name",
+          "image",
           "manufacturer",
           "ingredients",
           "infoNutritional",
@@ -145,6 +146,7 @@ class FoodService {
     try {
       const newFood = await this.food.create({
         name: foodData.name,
+        image: foodData.image,
         manufacturer: foodData.manufacturer,
         ingredients: foodData.ingredients,
         infoNutritional: foodData.infoNutritional,  
@@ -173,6 +175,7 @@ class FoodService {
       const userUpdate = await this.food.update(
         {
           name: foodData.name,
+          image: foodData.image,
           manufacturer: foodData.manufacturer,
           ingredients: foodData.ingredients,
           infoNutritional: foodData.infoNutritional,
