@@ -36,6 +36,7 @@ const CreateProduct = require('../controller/food/CreateProduct');
 const ProductDelete = require('../controller/food/ProductDelete');
 const UpdateProduct = require('../controller/food/UpdateProduct');
 const FilterFood = require('../controller/food/FilterFood')
+const FilterFoodByUser = require('../controller/food/FilterFoodByUser')
 const FilterFoodIngredient = require('../controller/food/FilterFoodIngredient')
 const FilterNotIngredient = require('../controller/food/FilterNotIngredient')
 
@@ -47,11 +48,13 @@ const createProduct = new CreateProduct();
 const productDelete = new ProductDelete();
 const updateProduct = new UpdateProduct();
 const filterFoods = new FilterFood()
+const filterFoodsByUser = new FilterFoodByUser()
 const filterFoodIngredient = new FilterFoodIngredient()
 const filterNotIngredient = new FilterNotIngredient
 router.get("/foodFilter/:food", filterFoods.filterFoods);
 router.get("/foodFilterContainIngredient/:food/:ingredient", filterFoodIngredient.filterFoodIngredient)
 router.get("/foodFilterNoContainIngredient/:food/:ingredient", filterNotIngredient.filterNotIngredient)
+router.get("/foodFilterByUser/:id", filterFoodsByUser.filterFoods);
 router.get('/food', listProducts.getAll);
 router.get('/food/:id', searchIdF.getId);
 router.get("/food/filterContainIngredient/:ingredient", containsIngredient.filterIngredient);
