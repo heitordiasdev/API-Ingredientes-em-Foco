@@ -9,6 +9,7 @@ class UpdateProduct {
     try {
       await foodService.editFood(id, {
         name,
+        image,
         manufacturer,
         ingredients,
         infoNutritional,
