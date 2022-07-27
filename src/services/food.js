@@ -24,7 +24,7 @@ class FoodService {
   async filterFoodByUser(id) {
     try {
       const listFilterFood = await this.food.findAll({
-        attributes: ["name", "image","manufacturer", "ingredients", "infoNutritional"],
+        attributes: ["id", "name", "image","manufacturer", "ingredients", "infoNutritional"],
         where: {
           UserId: id
         },

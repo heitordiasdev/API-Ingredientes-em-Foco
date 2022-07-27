@@ -4,7 +4,7 @@ const foodService = new FoodService(food);
 
 class UpdateProduct {
   async editFood(req, res) {
-    const { name, manufacturer, ingredients, infoNutritional } = req.body;
+    const { name, image, manufacturer, ingredients, infoNutritional } = req.body;
     const id = req.params.id;
     try {
       await foodService.editFood(id, {
