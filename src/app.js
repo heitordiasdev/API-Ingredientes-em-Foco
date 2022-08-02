@@ -20,7 +20,7 @@ sequelize.sync().then(() => {
 });
 
 // PORT
-const link = "http://localhost:8080";
-app.listen(8080, () => {
-  console.log(`App funcionando, acesse: ${link}`);
+var port = (process.env.PORT || 8080);
+app.listen(port, () => {
+  console.log("App funcionando");
 });

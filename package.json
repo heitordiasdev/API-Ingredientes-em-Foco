@@ -2,10 +2,11 @@
   "name": "api-ingredientes-em-foco",
   "version": "1.0.0",
   "description": "> ### 💬 Sobre o projeto",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
